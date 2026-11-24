@@ -1,0 +1,186 @@
+{% extends 'students/base.html' %}
+
+{% block title %}Student Profile | EnrollEase{% endblock %}
+{% block page_heading %}Student Profile{% endblock %}
+
+{% block content %}
+
+<a href="{% url 'student_list' %}" class="back-button">
+    ← Back to Student Directory
+</a>
+
+<div class="profile-header">
+    <div class="profile-avatar">
+        {{ student.first_name|first|upper }}
+    </div>
+
+    <div class="profile-heading">
+        <h1>
+            {{ student.first_name }}
+            {{ student.middle_name }}
+            {{ student.last_name }}
+        </h1>
+
+        <p>{{ student.student_id }}</p>
+
+        <span class="status">
+            {{ student.enrollment_status }}
+        </span>
+    </div>
+</div>
+
+<div class="profile-grid">
+
+    <!-- Personal Information -->
+    <div class="info-card">
+        <h2>Personal Information</h2>
+
+        <div class="info-grid">
+            <div class="info-item">
+                <label>First Name</label>
+                <p>{{ student.first_name }}</p>
+            </div>
+
+            <div class="info-item">
+                <label>Middle Name</label>
+                <p>{{ student.middle_name|default:"Not provided" }}</p>
+            </div>
+
+            <div class="info-item">
+                <label>Last Name</label>
+                <p>{{ student.last_name }}</p>
+            </div>
+
+            <div class="info-item">
+                <label>Date of Birth</label>
+                <p>{{ student.date_of_birth|date:"F d, Y" }}</p>
+            </div>
+
+            <div class="info-item">
+                <label>Gender</label>
+                <p>{{ student.gender }}</p>
+            </div>
+
+            <div class="info-item">
+                <label>Civil Status</label>
+                <p>{{ student.civil_status|default:"Not provided" }}</p>
+            </div>
+
+            <div class="info-item">
+                <label>Nationality</label>
+                <p>{{ student.nationality }}</p>
+            </div>
+        </div>
+    </div>
+
+    <!-- Contact Information -->
+    <div class="info-card">
+        <h2>Contact Information</h2>
+
+        <div class="info-grid">
+            <div class="info-item">
+                <label>Email Address</label>
+                <p>{{ student.email }}</p>
+            </div>
+
+            <div class="info-item">
+                <label>Contact Number</label>
+                <p>{{ student.contact_number }}</p>
+            </div>
+
+            <div class="info-item full-width">
+                <label>Complete Address</label>
+                <p>{{ student.address }}</p>
+            </div>
+        </div>
+    </div>
+
+    <!-- Family Background -->
+    <div class="info-card">
+        <h2>Family Background</h2>
+
+        <div class="info-grid">
+            <div class="info-item">
+                <label>Father's Name</label>
+                <p>{{ student.father_name|default:"Not provided" }}</p>
+            </div>
+
+            <div class="info-item">
+                <label>Mother's Name</label>
+                <p>{{ student.mother_name|default:"Not provided" }}</p>
+            </div>
+
+            <div class="info-item">
+                <label>Guardian's Name</label>
+                <p>{{ student.guardian_name|default:"Not provided" }}</p>
+            </div>
+
+            <div class="info-item">
+                <label>Guardian's Contact</label>
+                <p>{{ student.guardian_contact|default:"Not provided" }}</p>
+            </div>
+        </div>
+    </div>
+
+    <!-- Educational Background -->
+    <div class="info-card">
+        <h2>Educational Background</h2>
+
+        <div class="info-grid">
+            <div class="info-item">
+                <label>Previous School</label>
+                <p>{{ student.previous_school|default:"Not provided" }}</p>
+            </div>
+
+            <div class="info-item">
+                <label>Last Grade Completed</label>
+                <p>{{ student.last_grade_completed|default:"Not provided" }}</p>
+            </div>
+
+            <div class="info-item">
+                <label>Strand</label>
+                <p>{{ student.strand|default:"Not applicable" }}</p>
+            </div>
+        </div>
+    </div>
+
+    <!-- Enrollment Information -->
+    <div class="info-card full-card">
+        <h2>Enrollment Information</h2>
+
+        <div class="info-grid">
+            <div class="info-item">
+                <label>Course</label>
+                <p>{{ student.course }}</p>
+            </div>
+
+            <div class="info-item">
+                <label>Year Level</label>
+                <p>{{ student.year_level }}</p>
+            </div>
+
+            <div class="info-item">
+                <label>Section</label>
+                <p>{{ student.section|default:"Not assigned" }}</p>
+            </div>
+
+            <div class="info-item">
+                <label>Academic Year</label>
+                <p>{{ student.academic_year }}</p>
+            </div>
+
+            <div class="info-item">
+                <label>Student Type</label>
+                <p>{{ student.student_type }}</p>
+            </div>
+
+            <div class="info-item">
+                <label>Enrollment Date</label>
+                <p>{{ student.enrollment_date|date:"F d, Y" }}</p>
+            </div>
+        </div>
+    </div>
+
+</div>
+
+{% endblock %}

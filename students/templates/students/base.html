@@ -1,0 +1,70 @@
+{% load static %}
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>{% block title %}Online Enrollment System{% endblock %}</title>
+    <link rel="stylesheet" href="{% static 'students/style.css' %}">
+</head>
+<body>
+
+<div class="layout">
+
+    <aside class="sidebar">
+        <div class="brand">
+            <div class="brand-icon">OE</div>
+            <div>
+                <h2>EnrollEase</h2>
+                <small>Enrollment System</small>
+            </div>
+        </div>
+
+        <p class="menu-label">MAIN MENU</p>
+
+        <nav>
+            <a href="{% url 'student_list' %}" class="nav-link active">
+                <span>▦</span> Dashboard
+            </a>
+
+            <a href="{% url 'student_list' %}" class="nav-link">
+                <span>♙</span> Student Directory
+            </a>
+
+            <a href="/admin/" class="nav-link">
+                <span>⚙</span> Administration
+            </a>
+        </nav>
+
+        <div class="sidebar-bottom">
+            <p>Online Enrollment System</p>
+            <small>Admin Portal</small>
+        </div>
+    </aside>
+
+    <main class="main-content">
+        <header class="topbar">
+            <div>
+                <h3>{% block page_heading %}Dashboard{% endblock %}</h3>
+                <p>Student Information Management</p>
+            </div>
+
+            <div class="admin-info">
+                <div class="admin-avatar">A</div>
+                <div>
+                    <strong>Administrator</strong>
+                    <small>System Admin</small>
+                </div>
+            </div>
+        </header>
+
+        <section class="content">
+            {% block content %}
+            {% endblock %}
+        </section>
+    </main>
+
+</div>
+
+</body>
+</html>

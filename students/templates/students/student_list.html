@@ -1,0 +1,138 @@
+{% extends 'students/base.html' %}
+
+{% block title %}Student Directory | EnrollEase{% endblock %}
+{% block page_heading %}Student Dashboard{% endblock %}
+
+{% block content %}
+
+<div class="welcome-section">
+    <div>
+        <h1>Student Directory</h1>
+        <p>Manage and view all enrolled student information.</p>
+    </div>
+
+    <div class="date-label">
+        Academic Records
+    </div>
+</div>
+
+<div class="stats-grid">
+
+    <div class="stat-card">
+        <div class="stat-icon blue">♙</div>
+        <div>
+            <p>Total Students</p>
+            <h2>{{ total_students }}</h2>
+        </div>
+    </div>
+
+    <div class="stat-card">
+        <div class="stat-icon green">✓</div>
+        <div>
+            <p>Enrolled Students</p>
+            <h2>{{ enrolled_students }}</h2>
+        </div>
+    </div>
+
+    <div class="stat-card">
+        <div class="stat-icon purple">▤</div>
+        <div>
+            <p>Student Records</p>
+            <h2>{{ total_students }}</h2>
+        </div>
+    </div>
+
+</div>
+
+<div class="table-container">
+
+    <div class="table-header">
+        <div>
+            <h2>All Students</h2>
+            <p>View and manage student profiles.</p>
+        </div>
+
+        <form method="GET" class="search-form">
+            <input
+                type="text"
+                name="search"
+                placeholder="Search student..."
+                value="{{ search }}"
+            >
+            <button type="submit">Search</button>
+        </form>
+    </div>
+
+    <div class="table-responsive">
+        <table>
+            <thead>
+                <tr>
+                    <th>STUDENT ID</th>
+                    <th>STUDENT NAME</th>
+                    <th>COURSE</th>
+                    <th>YEAR LEVEL</th>
+                    <th>STATUS</th>
+                    <th>ACTION</th>
+                </tr>
+            </thead>
+
+            <tbody>
+
+                {% for student in students %}
+                <tr>
+                    <td>{{ student.student_id }}</td>
+
+                    <td>
+                        <div class="student-name">
+                            <div class="student-avatar">
+                                {{ student.first_name|first|upper }}
+                            </div>
+
+                            <div>
+                                <strong>
+                                    {{ student.first_name }}
+                                    {{ student.last_name }}
+                                </strong>
+                                <small>{{ student.email }}</small>
+                            </div>
+                        </div>
+                    </td>
+
+                    <td>{{ student.course }}</td>
+                    <td>{{ student.year_level }}</td>
+
+                    <td>
+                        <span class="status">
+                            {{ student.enrollment_status }}
+                        </span>
+                    </td>
+
+                    <td>
+                        <a
+                            href="{% url 'student_profile' student.pk %}"
+                            class="view-button"
+                        >
+                            View Profile
+                        </a>
+                    </td>
+                </tr>
+
+                {% empty %}
+                <tr>
+                    <td colspan="6" class="empty-message">
+                        No student records found.
+                    </td>
+                </tr>
+                {% endfor %}
+
+            </tbody>
+        </table>
+    </div>
+
+    <div class="table-footer">
+        Showing {{ students|length }} student record(s)
+    </div>
+
+</div>
+
+{% endblock %}
